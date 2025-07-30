@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download do App - Gold Play</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles to apply the Poppins font */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom gradient for the button to match the logo's feel */
+        .btn-gold-gradient {
+            background-image: linear-gradient(to right, #FBBF24, #F59E0B);
+        }
+        .btn-gold-gradient:hover {
+            background-image: linear-gradient(to right, #FCD34D, #FBBF24);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+    <!-- Main container -->
+    <div class="text-center p-8 max-w-md w-full">
+        
+        <!-- App Logo -->
+        <img src="https://i.imgur.com/xY2AhZr.png" alt="Logo Gold Play" class="mx-auto mb-8 w-40 h-40 drop-shadow-lg">
+
+        <!-- Main Heading -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-3 text-amber-400">Quase lá!</h1>
+        
+        <!-- Informational Text -->
+        <p class="text-gray-300 mb-6 text-lg">
+            O seu aplicativo está pronto para ser baixado.
+        </p>
+
+        <!-- Countdown Message -->
+        <div class="bg-gray-800 rounded-lg p-4 mb-8">
+            <p id="countdown-message" class="text-lg font-semibold">
+                O download iniciará em <span id="timer" class="text-amber-400 text-xl">5</span> segundos...
+            </p>
+        </div>
+
+        <!-- Download Button -->
+        <a id="download-button" href="https://gplayx.github.io/flix-tv/flix-tv.apk" 
+           class="btn-gold-gradient text-gray-900 font-bold py-3 px-8 rounded-full inline-block transition-all duration-300 transform hover:scale-105 shadow-lg">
+            Baixar Agora
+        </a>
+
+        <!-- Fallback Text -->
+        <p class="text-gray-500 mt-6 text-sm">
+            Se o download não iniciar, clique no botão acima.
+        </p>
+    </div>
+
+    <script>
+        // --- Countdown and Redirect Logic ---
+
+        const downloadLink = 'https://gplayx.github.io/flix-tv/flix-tv.apk';
+        let countdown = 5;
+        const timerElement = document.getElementById('timer');
+        const countdownMessageElement = document.getElementById('countdown-message');
+
+        // Function to update the timer every second
+        const interval = setInterval(() => {
+            countdown--;
+            if (timerElement) {
+                timerElement.textContent = countdown;
+            }
+
+            // When the countdown finishes
+            if (countdown <= 0) {
+                clearInterval(interval); // Stop the countdown
+                if(countdownMessageElement) {
+                    countdownMessageElement.textContent = 'Iniciando o download!';
+                }
+                // Redirect to the download link
+                window.location.href = downloadLink;
+            }
+        }, 1000); // Run every 1 second (1000 milliseconds)
+
+    </script>
+
+</body>
+</html>
